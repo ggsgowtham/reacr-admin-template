@@ -1,25 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useMemo,useEffect } from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
+import Index from './pages';
+import About from './about';
+import Header from './header/header';
+import UserContext from './userContext';
+import'bootstrap/dist/css/bootstrap.css';
 
-function App() {
+
+const App = () => {
+
+  const userList = async () => {
+    const response = await fetch(`https://reqres.in/api/users?page=2`);
+    const data = await response.json();
+    setUser(data)
+  };
+
+  const [user, setUser] = useState(userList);
+  
+
+  useEffect(() => {
+    userList();
+  }, []);
+
+  const providerValue = useMemo(() => ({ user, setUser}), [user, setUser]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+      <Header />
+        <UserContext.Provider value= {providerValue}>
+          <Route path="/" component={ Index } exact/>
+          <Route path="/about/:id" component = { About } /> 
+        </UserContext.Provider>           
+      </div>
+    </Router>
   );
 }
 
