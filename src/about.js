@@ -52,11 +52,11 @@ const About = () => {
       
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-2">
+          <div className="col-md-2 col-xs-4 col-sm-4" style={{ height: 558 }}>
               <SideNavPage />
           </div>
           <div className="col-md-2"></div>
-          <div className="col-md-6">  
+          <div className="col-md-6 col-xs-6 col-sm-6">  
             <div style = {{ marginTop: 20 }}>
               <form action="" onSubmit={handleSubmit} >
                 <fieldset>

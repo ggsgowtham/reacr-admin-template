@@ -15,13 +15,13 @@ const Index = () => {
         history.push(`/about/${person.id}`, {person})
     }
     return (
-        <div className="container-fluid">
+        <div className="container-fluid col-md-12" >
             <div className="row">
-                <div className="col-md-2">
+                <div className="col-md-2 col-sm-6 col-xs-3" style={{ height: 558 }}>
                     <SideNavPage />
                 </div>
-                <div className="col-md-2"></div>
-                <div className="col-md-6"  style = {{ marginTop: 30 }}>
+                <div className="col-md-2 col-xs-1"></div>
+                <div className="col-md-6 col-sm-6 col-xs-6"  style = {{ marginTop: 30 }}>
                     <Tabs id="controlled-tab-example">
                         <Tab eventKey = {Index} title="Home">
                            
